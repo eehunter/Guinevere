@@ -11,7 +11,7 @@ import net.dv8tion.jda.api.entities.Activity
 val projectDirAbsolutePath = Paths.get("").toAbsolutePath().toString()
 val resourcesPath = Paths.get(projectDirAbsolutePath, "/src/main/resources")
 
-val token = File("$resourcesPath/token").readLines()[0]
+val token = File("$resourcesPath/token").readLines()[0].trim()
 val jda = JDABuilder.createDefault(token).build()
 
 fun main() {
