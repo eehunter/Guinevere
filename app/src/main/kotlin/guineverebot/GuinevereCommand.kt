@@ -12,7 +12,7 @@ class GuinevereCommand : ListenerAdapter() {
 
     //This gets called when a slash command gets used.
     override fun onSlashCommandInteraction(event: SlashCommandInteractionEvent) {
-        logger.info("Recieved event called ${event.getFullCommandName()}")
+        logger.info("Recieved event called ${event.name}")
 		
         if (event.name == "guinevere") {
 			if(event.subcommandName == "kill") jda.shutdown()

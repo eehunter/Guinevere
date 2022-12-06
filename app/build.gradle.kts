@@ -19,12 +19,15 @@ repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
     maven{name = "m2-dv8tion"; setUrl("https://m2.dv8tion.net/releases")}
+
+    maven("https://jitpack.io/")
 }
 
 dependencies {
     // This dependency is used by the application.
     implementation("com.google.guava:guava:31.1-jre")
     implementation("net.dv8tion:JDA:5.0.0-alpha.22")
+    implementation("com.github.minndevelopment:jda-ktx:0.10.0-beta.1")
 }
 
 testing {
