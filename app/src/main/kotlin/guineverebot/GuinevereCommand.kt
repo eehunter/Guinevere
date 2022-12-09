@@ -1,5 +1,9 @@
 package guineverebot
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.OnlineStatus.OFFLINE
@@ -17,9 +21,14 @@ class GuinevereCommand : ListenerAdapter() {
 		
         if (event.name == "guinevere") {
 			if(event.subcommandName == "kill") {
-				event.reply("Shutting down...")
+				event.reply("Shutting down...").queue()
 				jda.presence.setStatus(OFFLINE)
-				jda.shutdown()
+				runBlocking{
+					launch(Dispatchers.Default){
+						delay(5000)
+						jda.shutdown()
+					}
+				}
 			} else if (event.subcommandName == "ping") {
 				logger.info("Command /ping got used")
 
