@@ -2,6 +2,7 @@ package guineverebot
 
 import net.dv8tion.jda.api.hooks.ListenerAdapter
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
+import net.dv8tion.jda.api.OnlineStatus.OFFLINE
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +16,11 @@ class GuinevereCommand : ListenerAdapter() {
         logger.info("Recieved event called ${event.name}")
 		
         if (event.name == "guinevere") {
-			if(event.subcommandName == "kill") jda.shutdown()
-			else if (event.subcommandName == "ping") {
+			if(event.subcommandName == "kill") {
+				event.reply("Shutting down...")
+				jda.presence.setStatus(OFFLINE)
+				jda.shutdown()
+			} else if (event.subcommandName == "ping") {
 				logger.info("Command /ping got used")
 
 				//Reply to the user
